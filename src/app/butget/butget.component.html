@@ -1,0 +1,79 @@
+<br><br><br>
+<div>
+    <div class="row" *ngIf="formError">
+        <div class="col-12  col-md-12" class="alert alert-danger" role="alert">
+            {{ formError }}
+        </div>
+    </div>
+    <form (ngSubmit)="queryIncomes()" role="form" id="mainForm">
+        <h4>收入管理</h4>
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text">年月：</span>
+            </div>
+            <select class="col-12 col-md-5 form-control ctrlColor" id="cyear" required [(ngModel)]="cyear" name="cyear">
+                <option *ngFor="let yr of viewModel.years" [value]="yr">{{yr}}</option>
+            </select><span class="slash">/</span>
+            <select class="col-12 col-md-5 form-control ctrlColor" id="cmonth" required [(ngModel)]="cmonth"
+                name="cmonth">
+                <option *ngFor="let mon of viewModel.months" [value]="mon">{{mon}}</option>
+            </select>
+            <div class="input-group-append">
+                <span class="appand fa" [ngStyle]="{height: hgt+ 'px'}">∇</span>
+            </div>
+        </div>
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text">成員：</span>
+            </div>
+            <select class="col-12 col-md-5 form-control ctrlColor" id="cmember" required [(ngModel)]="cmember"
+                name="cmember">
+                <option *ngFor="let mem of viewModel.users" [value]="mem.value">{{mem.key}}</option>
+            </select>
+            <div class="input-group-append">
+                <span class="appand fa" [ngStyle]="{height: hgt+ 'px'}">∇</span>
+            </div>
+        </div>
+        <div class="input-group fMargin" id="divLength">
+            <div class="input-group-prepend">
+                <span class="input-group-text">來源：</span>
+            </div>
+            <input type="text" [(ngModel)]="incomeTitle" id="incomeTitle" name="incomeTitle" required="required"
+                class="col-12 col-md-5 form-control">
+        </div>
+        <div class="input-group fMargin" id="divLength">
+            <div class="input-group-prepend">
+                <span class="input-group-text">金額：</span>
+            </div>
+            <input type="number" [(ngModel)]="cincome" id="cincome" name="cincome" required="required"
+                class="col-12 col-md-5 form-control">
+        </div>
+        <div class="row fMargin">
+            <div class="col-12 col-md-6">
+                <button type="submit" class="btn btn-primary">查詢</button>
+                <button type="button" class="btn btn-primary" (click)="setIncome()"
+                    style="margin-left: 100px;">設定</button>
+            </div>
+        </div>
+    </form>
+    <div *ngIf="fmIncomesShow">
+        <button *ngIf="fmIncomesShow" type="button" class="btn btn-primary" (click)="clearButdge()">回主頁</button>
+        <table class="tb3103">
+            <tr>
+                <td>年月</td>
+                <td>成員</td>
+                <td>金額</td>
+                <td>來源</td>
+                <td>刪除</td>
+            </tr>
+            <tr *ngFor="let item of fmIncomes">
+                <td>{{item.yearmonth}}</td>
+                <td>{{email2Name(item.useremail)}}</td>
+                <td>{{item.amount}}</td>
+                <td>{{item.incometitle}}</td>
+                <td><button  type="button" class="btn btn-primary" (click)="delIncome(item)">刪除</button></td>
+            </tr>
+        </table>
+
+    </div>
+</div>

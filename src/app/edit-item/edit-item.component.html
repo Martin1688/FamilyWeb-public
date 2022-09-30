@@ -1,0 +1,50 @@
+<br><br><br>
+<div *ngIf="newConsume">
+    <form (ngSubmit)="onEditSubmit()" role="form">
+        <h4>修改消費項目</h4>
+        <div *ngIf="formError" class="alert alert-danger" role="alert">
+            {{ formError }}
+        </div>
+        <hr>
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text">名稱：</span>
+            </div>
+            <input (focus)="hidedError()" [(ngModel)]="newConsume.itemName" id="itemName" name="itemName" required="required" class="form-control">
+        </div>
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text">價錢：</span>
+            </div>
+            <input (focus)="hidedError()" [(ngModel)]="newConsume.price" id="price" name="price" required="required" class="form-control">
+        </div>
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text" [ngStyle]="{height: hgt+ 'px'}">說明：</span>
+            </div>
+            <textarea (focus)="hidedError()" [(ngModel)]="newConsume.memo" name="memo" id="memo" rows="2" class="form-control">
+            </textarea>
+        </div>
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text">日期：</span>
+            </div>
+            <input (focus)="hidedError()" [(ngModel)]="newConsume.cyear" id="cyear" name="cyear" required="required" class="form-control"><span class="slash">/</span>
+            <input (focus)="hidedError()" [(ngModel)]="newConsume.cmonth" id="cmonth" name="cmonth" required="required" class="form-control"><span class="slash">/</span>
+            <input (focus)="hidedError()" [(ngModel)]="newConsume.cday" id="cday" name="cday" required="required" class="form-control">
+        </div>
+        <div class="row fMargin">
+            <div class="offset-md-3 col-md-6">
+                <button type="submit" class="btn btn-primary">儲存</button>
+
+                <button (click)="editCancel()" type="button" class="btn btn-warning" style="margin-left: 100px;">取消</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="row" *ngIf="!isLoggedIn()">
+    <div class="col-12 col-md-8">
+        <p class="lead">請先 <a routerLink="/login" class="btn btn-primary">登 入</a>修改帳目 </p>
+    </div>
+</div>

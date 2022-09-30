@@ -1,0 +1,57 @@
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-12">
+        <h3 class="loginTitle">註冊為家庭記帳會員</h3>
+        <h5 class="loginTitle">由財務管理人新增家庭成員以便記帳</h5>
+    </div>
+    <div class="col-12">
+        <form (submit)="onRegisterSubmit()">
+            <div role="alert" *ngIf="formError" class="alert alert-danger">
+                {{ formError }}</div>
+                <div class="input-group fMargin">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">家庭</span>
+                    </div>
+                    <input (focus)="clearErr()" class="form-control" id="name" name="name" placeholder="陳寓/湯姆與瑪麗的家"
+                        [(ngModel)]="credentials.familyName">
+                </div>
+                <div class="input-group fMargin">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">姓名</span>
+                    </div>
+                    <input (focus)="clearErr()" class="form-control" id="name" name="name" placeholder="財務管理人姓名"
+                        [(ngModel)]="credentials.name">
+                </div>
+                    <div class="input-group fMargin">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Email：</span>
+                </div>
+                <input type="email" class="form-control" id="email" name="email" placeholder="輸入 email "
+                    [(ngModel)]="credentials.email">
+            </div>
+            <!-- <div class="input-group fMargin">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">密碼</span>
+                </div>
+                <input type="password" class="form-control fpws" id="password" name="password" placeholder="密碼(英文字母+數字)"
+                    [(ngModel)]="credentials.password">       
+            </div>
+            <div class="input-group fMargin">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">確認</span>
+                </div>
+                <input type="password" class="form-control fpws" id="password2" name="password2" placeholder="確認密碼(英文字母+數字)"
+                    [(ngModel)]="credentials.password2">       
+            </div> -->
+            <button type="submit" role="button" class="btn btn-primary  fMargin">註冊</button>
+            <input class="fCheck" type="checkbox" value="" id="flexCheckChecked" (click)="setPasswordText()" *ngIf="false">
+            <label for="flexCheckChecked"  *ngIf="false">顯示密碼</label> 
+            <span class="lead">會員請直接<a routerLink="/login" class="btn btn-primary">登 入</a> </span>
+
+        </form>
+    </div>
+    <!-- <app-sidebar [content]="pageContent.sidebar" class="col-12 col-md-4"></app-sidebar> -->
+</div>
+

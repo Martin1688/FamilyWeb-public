@@ -1,0 +1,91 @@
+<br><br><br>
+<div *ngIf="showMain">
+    <div class="row">
+        <div class="col-12  col-md-12" *ngIf="formError" class="alert alert-danger" role="alert">
+            {{ formError }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <h4>消費項目查詢</h4>
+        </div>
+        <div class="col-xs-6 col-md-6 text-right"><button class="btn btn-primary" (click)="goQuery()" *ngIf="theList || totalList">回查詢</button></div>
+    </div>
+    <form (ngSubmit)="onSubmit()" #queryForm="ngForm" *ngIf="!theList && !totalList">
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text">年月：</span>
+            </div>
+            <select class="col-12 col-md-8 form-control ctrlColor" id="cyear" required [(ngModel)]="model.cyear" name="cyear">
+                <option *ngFor="let yr of viewModel.years" [value]="yr">{{yr}}</option>
+              </select><span class="slash">/</span>
+            <select class="col-12 col-md-8 form-control ctrlColor" id="cmonth" required [(ngModel)]="model.cmonth" name="cmonth">
+                <option *ngFor="let mon of viewModel.months" [value]="mon">{{mon}}</option>
+              </select>
+        </div>
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text">成員：</span>
+            </div>
+            <select class="col-12 col-md-8 form-control ctrlColor" id="user" required [(ngModel)]="model.user.key" name="user">
+                <option *ngFor="let usr of viewModel.users" [value]="usr.value">{{usr.key}}</option>
+              </select>
+        </div>
+        <div class="row fMargin">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">消費細目</button>
+                <!-- <button type="button" class="btn btn-primary" (click)="listIncome()" style="margin-left: 100px;">家庭收入</button> -->
+                <button type="button" class="btn btn-primary" (click)="monthTotal()" style="margin-left: 100px;">收支結算</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row  fMargin" *ngIf="totalList">
+        <div class="col-12 form-control fontColor">{{model.cyear}} 年 {{model.cmonth}}月消費支出</div>
+        <div class="col-12 form-control fontColor" *ngFor="let item of totalList | keyvalue ">{{item.value.title}}支出：<div class="moneyright">{{item.value.price}}元</div></div>
+        <div class="col-12 form-control fontColor">家庭總支出：<div class="moneyright">{{total}}元</div></div>
+        <div class="col-12 form-control fontColor">家庭總收入：<div class="moneyright">{{butget}}元</div></div>
+        <div class="col-12 form-control fontColor">家庭總結餘：<div class="moneyright">{{butget - total}}元</div></div>
+        <!-- 
+        <div class="col-12 form-control fontColor">{{summaryText.katyText}}</div>
+        <div class="col-12 form-control fontColor">{{summaryText.monthText}}</div>
+        <div class="col-12 form-control fontColor">{{summaryText.budget}}</div>
+        <div class="col-12 form-control fontColor">{{summaryText.remainderText}}</div> -->
+
+    </div>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar" *ngIf="theList">
+        <table class="table table-striped table-primary " *ngFor="let item of  theList | keyvalue">
+            <thead>
+                <tr>
+                    <th>名稱</th>
+                    <th class="text-right">價格</th>
+                    <th class="text-right">日期</th>
+                </tr>
+                <tr>
+                    <td>{{mail2name(item.key)+model.cyear+' '+' 年 '+ model.cmonth+' 月 '}}小計</td>
+                    <td class="text-right textRed">{{sum(item.value,'price')}}</td>
+                    <td class="text-right"></td>
+                </tr>
+            </thead>
+            <tbody *ngFor="let row of item.value">
+                <tr (click)="onClickEvent($event, row)">
+                    <td>{{row.itemName}}</td>
+                    <td class="text-right">{{row.price}}</td>
+                    <td class="text-right">{{row.cyear}}/{{row.cmonth}}/{{row.cday}}</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<div class="menu" id="contextMenu">
+    <ul class="menu-options">
+        <li class="menu-option" (click)="onItemEvent('edit')">修改</li>
+        <li class="menu-option" (click)="onItemEvent('delete')">刪除</li>
+    </ul>
+</div>
+
+<div *ngIf="!showMain">
+    <app-edit-item [newConsume]="theSelected" (editResult)="getEditResult($event)"></app-edit-item>
+</div>

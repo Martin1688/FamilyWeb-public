@@ -1,0 +1,31 @@
+.appand{
+    background-color: lightgoldenrodyellow;
+    color: gray;
+    font-weight: 100;
+    padding: 10px 5px 0px 5px;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    border-left: 0px;    
+  }
+  select:focus-within {
+    background: lightyellow;
+    color: rgb(4, 177, 4);
+  }
+
+  input:focus{
+    background: lightyellow;
+    color: rgb(4, 177, 4);    
+  }
+
+  .tb3103{
+    border-collapse:collapse;
+    border:1px solid rgb(90, 109, 150);
+    width: 100%;
+  }
+  
+  table.tb3103 td, th{
+    border-collapse:collapse;
+    border:1px solid rgb(90, 109, 150);
+    padding:5px 5px 5px 5px;
+  }
+  

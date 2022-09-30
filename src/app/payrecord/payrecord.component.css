@@ -1,0 +1,22 @@
+.custom-select{
+    background-color: lightgoldenrodyellow;
+    color: darkcyan;
+    font-weight: 800;
+    border-radius: 5px;
+    border-color: yellow;
+  }
+
+  option:checked { color: red; }
+  .appand{
+    background-color: lightgoldenrodyellow;
+    color: gray;
+    font-weight: 100;
+    padding: 10px 5px 0px 5px;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    border-left: 0px;    
+  }
+  select:focus-within {
+    background: lightyellow;
+    color: rgb(4, 177, 4);
+  }

@@ -1,0 +1,60 @@
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-12">
+        <form>
+            <div role="alert" *ngIf="formError" class="alert alert-danger">
+                {{ formError }}</div>
+            <div>{{fmly.familyName}}財務管理人：{{fmly.aName}}({{fmly.familycode}})
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>   
+            </div>
+            <div class="input-group fMargin">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">姓名</span>
+                </div>
+                <input  class="form-control" id="name" name="name" placeholder="家庭成員姓名"
+                    [(ngModel)]="user.name">
+            </div>
+            <div class="input-group fMargin">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Email：</span>
+                </div>
+                <input type="email" class="form-control" id="email" name="email" placeholder="輸入 email "
+                    [(ngModel)]="user.email" [disabled]="mailDisabled">
+            </div>
+        </form>
+        <div class="row fMargin" style="margin: 20px  0px 20px 0px">
+            <div class="col-12">
+                <button type="button" class="btn btn-primary" (click)="addSave()" style="margin-left: 100px;" *ngIf="!updateFlag">新增</button>
+                <button type="button" class="btn btn-primary" (click)="editSave()" style="margin-left: 100px;" *ngIf="updateFlag">儲存</button>
+                <button type="button" class="btn btn-primary" (click)="resetPassword()" style="margin-left: 100px;" *ngIf="false">重設密碼</button>
+                <button type="button" class="btn btn-primary" (click)="cancel()" style="margin-left: 100px;" >取消</button>
+            </div>
+        </div>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table table-striped table-primary">
+                <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>角色</th>
+                        <th>Email</th>
+                        <th>編輯</th>
+                        <th>刪除</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let row of members">
+                        <td>{{row!.name}}</td>
+                        <td class="text-right">{{row!.role}}</td>
+                        <td class="text-right">{{row!.email}}</td>
+                        <td><button type="button" (click)="editUser($event,row!)" class="btn btn-primary  fMargin" [disabled]="row.role!=='member'">編輯</button>
+                        </td>
+                        <td><button type="button" (click)="delUser($event,row!)" class="btn btn-danger  fMargin"  [disabled]="row.role!=='member'">刪除</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

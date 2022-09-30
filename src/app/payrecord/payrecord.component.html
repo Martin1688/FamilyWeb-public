@@ -1,0 +1,114 @@
+<br><br>
+<div   style="height: 500px; overflow-y: scroll;"><!-- *ngIf="newConsume"*ngIf="isLoggedIn()" -->
+    <form (ngSubmit)="onSubmit()" role="form">
+        <h4>家庭儲值登記</h4>
+        <div *ngIf="formError" class="alert alert-danger" role="alert">
+            {{ formError }}
+        </div>
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text">家庭名稱：</span>
+            </div>
+            <select class="col-12 col-md-8 form-control ctrlColor " id="family" name="family" required [(ngModel)]="family.value" > <!--  *ngIf="family.value"-->
+                <option *ngFor="let fm of families" [value]="fm.value">{{fm.name}}</option>
+            </select>
+            <div class="input-group-append">
+                <span class="appand fa"  [ngStyle]="{height: hgt+ 'px'}">∇</span>
+            </div>
+        </div>
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text">付費類型：</span>
+            </div>
+            <select class="col-12 col-md-8 form-control ctrlColor" id="paytype" name="paytype" required [(ngModel)]="paytype.value" aria-label=""><!-- (change)="SetPrice();"   *ngIf="paytype.value"-->
+                <option *ngFor="let pt of paytypes" [value]="pt.value">{{pt.name}}</option>
+            </select>
+            <div class="input-group-append">
+                <span class="appand fa"  [ngStyle]="{height: hgt+ 'px'}">∇</span>
+            </div>
+        </div>
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text">付費方式：</span>
+            </div>
+            <select class="col-12 col-md-8 form-control ctrlColor" id="paymethod" name="paymethod" required [(ngModel)]="paymethod"><!-- (change)="SetPrice();"   *ngIf="paytype.value"-->
+                <option *ngFor="let pm of PayMethods" [value]="pm.value">{{pm.name}}</option>
+            </select>
+            <div class="input-group-append">
+                <span class="appand fa"  [ngStyle]="{height: hgt+ 'px'}">∇</span>
+            </div>
+        </div>
+        <!-- <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text">起始年：</span>
+            </div>
+            <select class="col-12 col-md-8 form-control ctrlColor" id="cyear" name="cyear" required [(ngModel)]="year">
+                <option *ngFor="let yr of years" [value]="yr">{{yr}}</option>
+            </select>
+            <div class="input-group-append">
+                <span class="appand fa"  [ngStyle]="{height: hgt+ 'px'}">∇</span>
+            </div>
+        </div>
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text">起始月：</span>
+            </div>
+            <select class="col-12 col-md-8 form-control ctrlColor" id="month" name="month" required [(ngModel)]="month">
+                <option *ngFor="let mon of months" [value]="mon">{{mon}}</option>
+            </select>
+            <div class="input-group-append">
+                <span class="appand fa"  [ngStyle]="{height: hgt+ 'px'}">∇</span>
+            </div>
+        </div> -->
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text">起始日：</span>
+            </div>
+            <select class="col-12 col-md-8 form-control ctrlColor" id="cyear" name="cyear" required [(ngModel)]="year">
+                <option *ngFor="let yr of years" [value]="yr">{{yr}}</option>
+            </select>
+            <select class="col-12 col-md-8 form-control ctrlColor" id="month" name="month" required [(ngModel)]="month">
+                <option *ngFor="let mon of months" [value]="mon">{{mon}}</option>
+            </select>
+            <select class="col-12 col-md-8 form-control ctrlColor" id="bday" name="bday" required [(ngModel)]="bday">
+                <option *ngFor="let dd of days" [value]="dd">{{dd}}</option>
+            </select>
+            <div class="input-group-append">
+                <span class="appand fa"  [ngStyle]="{height: hgt+ 'px'}">∇</span>
+            </div>
+        </div>
+        <div class="input-group fMargin" id="divLength">
+            <div class="input-group-prepend">
+                <span class="input-group-text">折扣：</span>
+            </div>
+            <select class="col-12 col-md-8 form-control ctrlColor" id="discount" name="discount" required [(ngModel)]="discount.value">
+                <option *ngFor="let count of discounts" [value]="count.value">{{count.name}}</option>
+            </select>
+            <div class="input-group-append">
+                <span class="appand fa"  [ngStyle]="{height: hgt+ 'px'}">∇</span>
+            </div>
+        </div>
+        <div class="input-group fMargin" >
+            <div class="input-group-prepend">
+                <span class="input-group-text">金額：</span>
+            </div>
+            <span class="col-12 col-md-8 form-control ctrlColor" >{{this.prices[this.paytype.value]*this.discount.value}}</span>
+
+        </div>
+        <div class="row fMargin">
+            <div class="offset-md-3 col-md-6">
+                <button type="submit" class="btn btn-primary" [disabled]="disableBtn">儲存</button>
+
+                <button (click)="formClear()" type="button" class="btn btn-warning" style="margin-left: 100px;">取消</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+<!--div class="row" *ngIf="!isLoggedIn()">
+    <div class="col-12 col-md-8">
+        <p class="lead">請先 <a routerLink="/login" class="btn btn-primary">登 入</a>再紀錄帳目 </p>
+    </div>
+</div-->
+
+

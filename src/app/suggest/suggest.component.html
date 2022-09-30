@@ -1,0 +1,64 @@
+<br><br>
+<div class="col-12" style="margin-top: 20px;">
+    <h3 class="loginTitle">改進意見</h3>
+    <h5 class="loginTitle">使用本軟體後希望本網站做那些調整，會更適合您使用</h5>
+</div>
+<div *ngIf="isLoggedIn()">
+    <!--*ngIf="isLoggedIn()" -->
+    <form (ngSubmit)="onSuggestSubmit()" role="form">
+        <div *ngIf="formError" class="alert alert-danger" role="alert">
+            {{ formError }}
+        </div>
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text">批評意見：</span>
+            </div>
+            <input (focus)="hidedError()" [(ngModel)]="opinion!.advice" id="advice" name="advice" required="required"
+                class="form-control">
+        </div>
+        <div class="input-group fMargin">
+            <div class="input-group-prepend">
+                <span class="input-group-text" [ngStyle]="{height: hgt+ 'px'}">詳細說明：</span>
+            </div>
+            <textarea (focus)="hidedError()" [(ngModel)]="opinion!.explain" name="explain" id="explain" rows="2"
+                class="form-control">
+            </textarea>
+        </div>
+        <div class="row fMargin"  style="margin: 20px  0px 20px 0px">
+            <div class="offset-md-3 col-md-6">
+                <button type="submit" class="btn btn-primary"  *ngIf="!edited">提議</button>
+                <button type="button" class="btn btn-primary" (click)="editSave()" style="margin-left: 100px;" *ngIf="edited" [disabled]="!isOriginalUser(opinion!)">儲存</button>
+                <button type="button" class="btn btn-primary" (click)="cancel()" style="margin-left: 100px;" >取消</button>
+            </div>
+        </div>
+
+    </form>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-striped table-primary">
+            <thead>
+                <tr>
+                    <th>意見</th>
+                    <th>姓名</th>
+                    <th>日期</th>
+                    <th>細節</th>
+                    <th  *ngIf="isSystemAdmin()">刪除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let row of opinions">
+                    <td>{{row!.advice}}</td>
+                    <td class="text-right">{{row!.username}}</td>
+                    <td class="text-right">{{localDate(row!.dttime)}}</td>
+                    <td><button type="button" (click)="editOpinion(row!)" class="btn btn-info  fMargin" >細節</button></td>
+                    <td *ngIf="isSystemAdmin()"><button type="button" (click)="delOpinion(row!)" class="btn btn-danger  fMargin">刪除</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<!--div class="row" *ngIf="!isLoggedIn()">
+    <div class="col-12 col-md-8">
+        <p class="lead">請先 <a routerLink="/login" class="btn btn-primary">登 入</a>再紀錄帳目 </p>
+    </div>
+</div-->

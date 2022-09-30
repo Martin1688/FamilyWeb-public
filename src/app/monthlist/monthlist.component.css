@@ -1,0 +1,64 @@
+
+.tdTopLine {
+    border-top: 1px chartreuse;
+}
+
+.textRed {
+    color: red;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+.fontColor {
+    background-color: deepskyblue;
+    color: brown;
+    font-weight: 800;
+}
+
+.ctrlColor {
+    background-color: lightgoldenrodyellow;
+    color: darkcyan;
+    font-weight: 800;
+}
+
+.menu {
+    width: 120px;
+    position: absolute;
+    display: none;
+    z-index: 2000;
+    margin: 0;
+    border-radius: 3px;
+}
+
+.menu-option {
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 40px 10px 20px;
+    cursor: pointer;
+    color: purple;
+    background-color: lightpink;
+    border-radius: 3px;
+    border: outset;
+}
+
+li:hover {
+    background: whitesmoke;
+}
+
+.menu-options {
+    list-style: none;
+    padding: 0;
+}
+.moneyright{
+    width: 150px;
+    text-align: right;
+    display:inline-table;
+}

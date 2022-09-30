@@ -1,0 +1,62 @@
+.divclass{
+    background-image: url("../../assets/images/homebg3.png");    
+    height: 1080px;
+    background-size: contain;
+    background-repeat:no-repeat;
+    background-position:top;
+    background-size: 100% 100%; 
+    margin-top: 200px;
+    padding:0;
+    /* background-color: transparent; 
+    border-radius: 10px;
+    border: 2px ridge rgb(155, 102, 185);*/
+    opacity: 0.3;
+ }
+ .title {
+
+    position: fixed;
+    top: 15%;
+    font-size: 50px;
+    left: 30%;
+    color:black;
+    /* 
+    width: 5em;
+    margin-top: -2.5em; */
+  }
+
+  .title2 {
+
+    position: fixed;
+    font-size: 70px;
+    left: 100px;
+    top: 60%;
+    width: 5em;
+    margin-top: -2.5em;
+  }
+  h1{
+    background: -webkit-linear-gradient(to top, #3a1c71, #d76d77, #ffaf7b);
+    background: linear-gradient(to top, #3a1c71, #d76d77, #ffaf7b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hometext{
+    color:red;
+    font-weight: 1000;
+    padding-top: 18px;
+    margin: 0px 30px 0px 20px;
+  }  
+  .hometext3{
+    color:#d76d77;
+    font-weight: 1000;
+    padding-top: 18px;
+    margin: 0px 30px 0px 20px;
+  }
+
+  .hometext2{
+    color:purple;
+    font-weight: 1000;
+    padding-top: 20px;
+    margin: 0px 30px 0px 20px;
+  }
