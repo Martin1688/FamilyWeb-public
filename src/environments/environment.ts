@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  apiBaseUrl: 'http://localhost:3000/api',
+  apiBaseUrl: 'https://fmlyapi.vercel.app/api',
   production: false,
   siteKey: '6Lc1mhQhAAAAAAvBU2oxo4-Qqmn_LnlTpUhoqJiF',
 };
