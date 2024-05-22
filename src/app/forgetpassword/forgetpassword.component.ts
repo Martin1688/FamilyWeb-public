@@ -14,7 +14,8 @@ export class ForgetpasswordComponent implements OnInit {
   });
   public formError: string = '';
   constructor(private admin: AdminService) {
-    this.formError="新密碼將寄到註冊的email信箱，請輸入email：";
+    //this.formError="新密碼將寄到註冊的email信箱，請輸入email：";
+    this.formError="輸入email以便變更密碼!";
    }
 
   ngOnInit(): void {

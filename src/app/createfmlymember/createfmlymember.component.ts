@@ -124,16 +124,18 @@ export class CreatefmlymemberComponent implements OnInit {
     if(this.formError ===''){
       this.recaptchaV3Service.execute('importantAction').subscribe((token: string) => {
         this.admin.verifyReCaptcha(token).subscribe((result: { "success": string, 'message': string }) => {
+          console.log(result);
           if (result.success) {
             this.user.familycode = this.fmly.familycode;
             this.user.role='member';
+            console.log(this.user);
             this.admin.CreatUser(this.user).subscribe(
               {
                 next: (result: { message: string, data: string } | any) => {
                   if (result.message === '') {
                     //let data = JSON.parse(result.data);
                     this.members?.push(this.user);
-                    this.cancels(`已新增用戶${this.user.name}`);
+                    this.cancels(`已新增用戶${this.user.name}，密碼：${result.data}`);
                   }
                   else {
                     this.formError = result.message;

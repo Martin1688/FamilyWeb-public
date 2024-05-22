@@ -45,8 +45,8 @@ export class AdminService {
 
   } 
   CreatUser(user: BriefUser) {
-    console.log(user);
     const url: string = `${this.apiBaseUrl}/fmlyuser`;
+    console.log(url);
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.getToken()}`
