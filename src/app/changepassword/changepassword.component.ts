@@ -22,6 +22,7 @@ export class ChangepasswordComponent implements OnInit {
   oldPasswordTextType = true;
   passwordTextType = true;
   newPasswordTextType = true;
+  changedOK = false;
   user: User | undefined;
   constructor(private admin: AdminService,
     private auth: AuthenticationService,
@@ -61,6 +62,7 @@ export class ChangepasswordComponent implements OnInit {
               next: (result: { message: string, data: any } | any) => {
                 if (result.message === '') {
                   this.formError = result.data;
+                  this.changedOK = true;
                   this.model.setValue({ 'email': this.user!.email, 'oldPassword': null, 'password': null, 'newPassword': null });
                 }
                 else {

@@ -13,6 +13,7 @@ export class ForgetpasswordComponent implements OnInit {
     email:new FormControl(null,Validators.required)
   });
   public formError: string = '';
+  changedOK = false;
   constructor(private admin: AdminService) {
     //this.formError="新密碼將寄到註冊的email信箱，請輸入email：";
     this.formError="輸入email以便變更密碼!";
@@ -30,6 +31,7 @@ export class ForgetpasswordComponent implements OnInit {
         next: (result: { message: string, data: any } | any) => {
           if (result.message === 'success') {
               this.formError=result.data;
+              this.changedOK = true;
               this.model.setValue({'email':null});
             }
           else {
